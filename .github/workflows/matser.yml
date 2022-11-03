@@ -6,7 +6,10 @@ on:
      - master
   schedule:
    - cron: "0 0/1 * * *"
-
+  repository_dispatch:
+    types:
+      - webhook-1
+      - webhook-2
 env:
   STORAGE_TYPE: mongodb
   # mongodb配置
