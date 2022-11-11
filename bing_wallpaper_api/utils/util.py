@@ -8,9 +8,9 @@ sys.path.append(BASE_DIR)
 import settings
 
 # 获取必应接口数据
-def get_data(id,url,mkt):
+def get_data(id,url):
     json_data={}
-    bing_json_data=json.loads(requests.get(url,headers={'location':mkt}).text)
+    bing_json_data=json.loads(requests.get(url).text)
     json_data['id']=id+1
     json_data['title']=bing_json_data['images'][0]['title']
     json_data['url']=settings.BINGURL+bing_json_data['images'][0]['url'].replace("&rf=LaDigue_1920x1080.jpg&pid=hp","")

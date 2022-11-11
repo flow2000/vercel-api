@@ -3,6 +3,7 @@
 import sys
 import os
 import time
+import datetime
 import json
 import requests
 from pymongo import MongoClient
@@ -19,7 +20,7 @@ def init_data_to_database():
         if get_count(mkt)==0:
             print("初始化"+mkt)
             url = settings.BINGAPI+"&mkt="+mkt
-            json_data=util.get_data(0,url,mkt)
+            json_data=util.get_data(0,url)
             insert_one(mkt,json_data)
             print(str(time.strftime('%Y-%m-%d', time.localtime()))+":今日壁纸添加成功，今日壁纸信息\n"+str(json_data)+"\n")
             print("已收录"+json_data['datetime']+"到"+json_data['datetime']+"的壁纸数据，总计1条")
@@ -30,8 +31,8 @@ def add_data_to_database():
     for mkt in settings.LOCATION:
         count = get_count(mkt)
         url = settings.BINGAPI+"&mkt="+mkt
-        json_data=util.get_data(count,url,mkt)
-        if query_latest_one(mkt)['datetime']!=json_data['datetime']:
+        json_data=util.get_data(count,url)
+        if cal_date_diff(query_latest_one(mkt)['datetime'],json_data['datetime'])>=1:
             insert_one(mkt,json_data)
             first_data = query_first_one(mkt)
             latest_data = query_latest_one(mkt)
@@ -49,9 +50,10 @@ def add_data_to_json():
         timearray=time.strptime(str(bing_lists[0]['enddate']),'%Y%m%d')
         datetime=time.strftime('%Y-%m-%d', timearray)
         url = settings.BINGAPI+"&mkt="+mkt
-        json_data=util.get_data(len(bing_lists),url,mkt)
+        json_data=util.get_data(len(bing_lists),url)
         NOW_DATE=json_data['datetime']
-        if datetime!=NOW_DATE:
+        if cal_date_diff(datetime,NOW_DATE)>=1:
+            print(mkt+"：最近提交的日期为"+NOW_DATE+"，现在时间："+time.strftime('%Y-%m-%d %H:%M:%S', timearray))
             print(mkt+":已添加"+NOW_DATE+"json数据")
             json_data=json.loads(requests.get(url).text)['images'][0]
             bing_lists.insert(0, json_data)
@@ -69,6 +71,11 @@ def read_json(run_type):
 def write_json(run_type,data):
     with open(f'data/{run_type}_all.json', 'w', encoding="utf-8") as f:
         json.dump(data,f, indent=2, ensure_ascii=False)
+
+def cal_date_diff(d1,d2):
+    date1 = datetime.datetime.strptime(d1, "%Y-%m-%d").date()  
+    date2 = datetime.datetime.strptime(d2, "%Y-%m-%d").date()  
+    return (date2 - date1).days
                 
 if __name__=='__main__':
     init_data_to_database()

@@ -8,7 +8,7 @@ from pymongo import MongoClient
 ############################## 工具配置 start ################################
 
 # mongodb连接字符串
-MONGODB_URI='mongodb://localhost:27017/'
+MONGODB_URI='mongodb://127.0.0.1:27017/'
 
 ############################## 工具配置 end ##################################
 
