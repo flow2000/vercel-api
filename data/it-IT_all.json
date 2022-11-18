@@ -1,11 +1,28 @@
 {
-  "update_time": "2022-11-17 21:02:16",
-  "total": 204,
+  "update_time": "2022-11-18 21:02:05",
+  "total": 205,
   "language": "it-IT",
   "message": "ok",
   "status": true,
   "success": true,
   "data": [
+    {
+      "startdate": "20221117",
+      "fullstartdate": "202211172300",
+      "enddate": "20221118",
+      "url": "/th?id=OHR.IslamicArt_IT-IT4726604829_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+      "urlbase": "/th?id=OHR.IslamicArt_IT-IT4726604829",
+      "copyright": "Le porte del Palazzo Reale (Dar El Makhzen) a Fez, in Marocco (© Adam Smigielski/Getty Images)",
+      "copyrightlink": "https://www.bing.com/search?q=Architettura+islamica&form=hpcapt",
+      "title": "Alle porte di un regno incantato",
+      "quiz": "/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20221117_IslamicArt%22&FORM=HPQUIZ",
+      "wp": true,
+      "hsh": "cc9a16f26dc365ad0a9a4f32b0ab989c",
+      "drk": 1,
+      "top": 1,
+      "bot": 1,
+      "hs": []
+    },
     {
       "startdate": "20221116",
       "fullstartdate": "202211162300",
