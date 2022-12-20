@@ -12,6 +12,7 @@ env:
   STORAGE_TYPE: mongodb
   # mongodb配置
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
+  MONGODB_URI1: ${{ secrets.MONGODB_URI1 }}
 
 jobs:
   build:
