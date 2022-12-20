@@ -80,4 +80,7 @@ def cal_date_diff(d1,d2):
 if __name__=='__main__':
     init_data_to_database()
     add_data_to_database()
+    #添加多数据源
+    os.environ["MONGODB_URI"]=os.environ["MONGODB_URI1"]
+    add_data_to_database()
     add_data_to_json()
